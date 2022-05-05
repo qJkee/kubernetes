@@ -284,12 +284,12 @@ func WithPriorityAndFairness(
 		if !served {
 			setResponseHeaders(classification, w)
 
-			if isMutatingRequest {
-				epmetrics.DroppedRequests.WithContext(ctx).WithLabelValues(epmetrics.MutatingKind).Inc()
-			} else {
-				epmetrics.DroppedRequests.WithContext(ctx).WithLabelValues(epmetrics.ReadOnlyKind).Inc()
-			}
-			epmetrics.RecordRequestTermination(r, requestInfo, epmetrics.APIServerComponent, http.StatusTooManyRequests)
+			// if isMutatingRequest {
+			// 	epmetrics.DroppedRequests.WithContext(ctx).WithLabelValues(epmetrics.MutatingKind).Inc()
+			// } else {
+			// 	epmetrics.DroppedRequests.WithContext(ctx).WithLabelValues(epmetrics.ReadOnlyKind).Inc()
+			// }
+			// epmetrics.RecordRequestTermination(r, requestInfo, epmetrics.APIServerComponent, http.StatusTooManyRequests)
 			tooManyRequests(r, w)
 		}
 	})
