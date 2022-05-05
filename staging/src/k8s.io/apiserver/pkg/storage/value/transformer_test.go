@@ -180,7 +180,7 @@ func TestPrefixFromMetrics(t *testing.T) {
 	}
 
 	RegisterMetrics()
-	transformerOperationsTotal.Reset()
+	// transformerOperationsTotal.Reset()
 
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
@@ -238,7 +238,7 @@ func TestPrefixToMetrics(t *testing.T) {
 	}
 
 	RegisterMetrics()
-	transformerOperationsTotal.Reset()
+	// transformerOperationsTotal.Reset()
 
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {

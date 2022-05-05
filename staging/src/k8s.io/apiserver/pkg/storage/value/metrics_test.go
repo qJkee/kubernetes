@@ -99,7 +99,7 @@ func TestTotals(t *testing.T) {
 	}
 
 	RegisterMetrics()
-	transformerOperationsTotal.Reset()
+	// transformerOperationsTotal.Reset()
 
 	for _, tt := range testCases {
 		t.Run(tt.desc, func(t *testing.T) {

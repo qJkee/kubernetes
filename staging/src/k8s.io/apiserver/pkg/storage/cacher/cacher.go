@@ -1212,7 +1212,7 @@ func (c *cacheWatcher) add(event *watchCacheEvent, timer *time.Timer) bool {
 		// Since we don't want to block on it infinitely,
 		// we simply terminate it.
 		klog.V(1).Infof("Forcing %v watcher close due to unresponsiveness: %v. len(c.input) = %v, len(c.result) = %v", c.objectType.String(), c.identifier, len(c.input), len(c.result))
-		terminatedWatchersCounter.WithLabelValues(c.objectType.String()).Inc()
+		// terminatedWatchersCounter.WithLabelValues(c.objectType.String()).Inc()
 		c.forget()
 	}
 
@@ -1391,8 +1391,13 @@ func (c *cacheWatcher) processInterval(ctx context.Context, cacheInterval *watch
 	}
 
 	objType := c.objectType.String()
-	if initEventCount > 0 {
-		initCounter.WithLabelValues(objType).Add(float64(initEventCount))
+	if len(initEvents) > 0 {
+		// initCounter.WithLabelValues(objType).Add(float64(len(initEvents)))
+		// With some events already sent, update resourceVersion
+		// so that events that were buffered and not yet processed
+		// won't be delivered to this watcher second time causing
+		// going back in time.
+		resourceVersion = initEvents[len(initEvents)-1].ResourceVersion
 	}
 	processingTime := time.Since(startTime)
 	if processingTime > initProcessThreshold {

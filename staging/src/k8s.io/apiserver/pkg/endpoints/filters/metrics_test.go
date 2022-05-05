@@ -127,13 +127,13 @@ func TestMetrics(t *testing.T) {
 	// Since prometheus' gatherer is global, other tests may have updated metrics already, so
 	// we need to reset them prior running this test.
 	// This also implies that we can't run this test in parallel with other auth tests.
-	authenticatedUserCounter.Reset()
-	authenticatedAttemptsCounter.Reset()
+	// authenticatedUserCounter.Reset()
+	// authenticatedAttemptsCounter.Reset()
 
 	for _, tt := range testCases {
 		t.Run(tt.desc, func(t *testing.T) {
-			defer authenticatedUserCounter.Reset()
-			defer authenticatedAttemptsCounter.Reset()
+			// defer authenticatedUserCounter.Reset()
+			// defer authenticatedAttemptsCounter.Reset()
 			done := make(chan struct{})
 			auth := WithAuthentication(
 				http.HandlerFunc(func(_ http.ResponseWriter, _ *http.Request) {
