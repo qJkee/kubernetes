@@ -261,9 +261,9 @@ func TestConfigConsumer(t *testing.T) {
 				FlowcontrolClient:      flowcontrolClient,
 				ServerConcurrencyLimit: 100,         // server concurrency limit
 				RequestWaitLimit:       time.Minute, // request wait limit
-				ReqsObsPairGenerator:   metrics.PriorityLevelConcurrencyObserverPairGenerator,
-				ExecSeatsObsGenerator:  metrics.PriorityLevelExecutionSeatsObserverGenerator,
-				QueueSetFactory:        cts,
+				// ReqsObsPairGenerator:   metrics.PriorityLevelConcurrencyObserverPairGenerator,
+				// ExecSeatsObsGenerator:  metrics.PriorityLevelExecutionSeatsObserverGenerator,
+				QueueSetFactory: cts,
 			})
 			cts.cfgCtlr = ctlr
 			persistingPLNames := sets.NewString()
@@ -393,9 +393,9 @@ func TestAPFControllerWithGracefulShutdown(t *testing.T) {
 		FlowcontrolClient:      flowcontrolClient,
 		ServerConcurrencyLimit: 100,
 		RequestWaitLimit:       time.Minute,
-		ReqsObsPairGenerator:   metrics.PriorityLevelConcurrencyObserverPairGenerator,
-		ExecSeatsObsGenerator:  metrics.PriorityLevelExecutionSeatsObserverGenerator,
-		QueueSetFactory:        cts,
+		// ReqsObsPairGenerator:   metrics.PriorityLevelConcurrencyObserverPairGenerator,
+		// ExecSeatsObsGenerator:  metrics.PriorityLevelExecutionSeatsObserverGenerator,
+		QueueSetFactory: cts,
 	})
 
 	stopCh, controllerCompletedCh := make(chan struct{}), make(chan struct{})

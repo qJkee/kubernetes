@@ -16,11 +16,6 @@ limitations under the License.
 
 package cacher
 
-import (
-	"k8s.io/component-base/metrics"
-	"k8s.io/component-base/metrics/legacyregistry"
-)
-
 const (
 	namespace = "apiserver"
 	subsystem = "watch_cache"

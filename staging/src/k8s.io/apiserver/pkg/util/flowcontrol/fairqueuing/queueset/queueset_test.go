@@ -1462,9 +1462,11 @@ func newFIFO(requests ...*request) fifo {
 }
 
 func newObserverPair(clk clock.PassiveClock) metrics.RatioedChangeObserverPair {
-	return metrics.PriorityLevelConcurrencyObserverPairGenerator.Generate(1, 1, []string{"test"})
+	return metrics.RatioedChangeObserverPair{}
+	// return metrics.PriorityLevelConcurrencyObserverPairGenerator.Generate(1, 1, []string{"test"})
 }
 
 func newExecSeatsObserver(clk clock.PassiveClock) metrics.RatioedChangeObserver {
-	return metrics.PriorityLevelExecutionSeatsObserverGenerator.Generate(1, 1, []string{"test"})
+	return nil
+	// return metrics.PriorityLevelExecutionSeatsObserverGenerator.Generate(1, 1, []string{"test"})
 }

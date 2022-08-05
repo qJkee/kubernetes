@@ -21,7 +21,6 @@ import (
 	"math/rand"
 	"sync/atomic"
 	"testing"
-	"time"
 
 	flowcontrol "k8s.io/api/flowcontrol/v1beta2"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -31,7 +30,6 @@ import (
 	"k8s.io/apiserver/pkg/endpoints/request"
 	fqtesting "k8s.io/apiserver/pkg/util/flowcontrol/fairqueuing/testing"
 	fcfmt "k8s.io/apiserver/pkg/util/flowcontrol/format"
-	"k8s.io/apiserver/pkg/util/flowcontrol/metrics"
 )
 
 var noRestraintQSF = fqtesting.NewNoRestraintFactory()
@@ -56,11 +54,11 @@ func genPL(rng *rand.Rand, name string) *flowcontrol.PriorityLevelConfiguration 
 			HandSize:         hs,
 			QueueLengthLimit: 5}
 	}
-	labelVals := []string{"test"}
-	_, err := queueSetCompleterForPL(noRestraintQSF, nil, plc, time.Minute, metrics.PriorityLevelConcurrencyObserverPairGenerator.Generate(1, 1, labelVals), metrics.PriorityLevelExecutionSeatsObserverGenerator.Generate(1, 1, labelVals))
-	if err != nil {
-		panic(err)
-	}
+	// labelVals := []string{"test"}
+	// _, err := queueSetCompleterForPL(noRestraintQSF, nil, plc, time.Minute, metrics.PriorityLevelConcurrencyObserverPairGenerator.Generate(1, 1, labelVals), metrics.PriorityLevelExecutionSeatsObserverGenerator.Generate(1, 1, labelVals))
+	// if err != nil {
+	// 	panic(err)
+	// }
 	return plc
 }
 

@@ -185,7 +185,7 @@ func TestPrefixFromMetrics(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			tc.prefix.TransformFromStorage(context.Background(), tc.input, nil)
-			defer transformerOperationsTotal.Reset()
+			// defer transformerOperationsTotal.Reset()
 			if err := testutil.GatherAndCompare(legacyregistry.DefaultGatherer, strings.NewReader(tc.want), tc.metrics...); err != nil {
 				t.Fatal(err)
 			}
@@ -243,7 +243,7 @@ func TestPrefixToMetrics(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			tc.prefix.TransformToStorage(context.Background(), tc.input, nil)
-			defer transformerOperationsTotal.Reset()
+			// defer transformerOperationsTotal.Reset()
 			if err := testutil.GatherAndCompare(legacyregistry.DefaultGatherer, strings.NewReader(tc.want), tc.metrics...); err != nil {
 				t.Fatal(err)
 			}

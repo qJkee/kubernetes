@@ -377,13 +377,13 @@ func TestRecordDroppedRequests(t *testing.T) {
 	// we need to reset them prior running this test.
 	// This also implies that we can't run this test in parallel with other tests.
 	Register()
-	requestCounter.Reset()
-	droppedRequests.Reset()
+	// requestCounter.Reset()
+	// droppedRequests.Reset()
 
 	for _, test := range testCases {
 		t.Run(test.desc, func(t *testing.T) {
-			defer requestCounter.Reset()
-			defer droppedRequests.Reset()
+			// defer requestCounter.Reset()
+			// defer droppedRequests.Reset()
 
 			RecordDroppedRequest(test.request, test.requestInfo, APIServerComponent, test.isMutating)
 

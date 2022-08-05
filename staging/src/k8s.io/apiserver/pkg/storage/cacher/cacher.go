@@ -408,7 +408,7 @@ func (c *Cacher) startCaching(stopChannel <-chan struct{}) {
 		successfulList = true
 		c.ready.set(true)
 		klog.V(1).Infof("cacher (%v): initialized", c.objectType.String())
-		watchCacheInitializations.WithLabelValues(c.objectType.String()).Inc()
+		// watchCacheInitializations.WithLabelValues(c.objectType.String()).Inc()
 	})
 	defer func() {
 		if successfulList {
@@ -773,7 +773,7 @@ func (c *Cacher) dispatchEvents() {
 				c.dispatchEvent(&event)
 			}
 			lastProcessedResourceVersion = event.ResourceVersion
-			eventsCounter.WithLabelValues(c.objectType.String()).Inc()
+			// eventsCounter.WithLabelValues(c.objectType.String()).Inc()
 		case <-bookmarkTimer.C():
 			bookmarkTimer.Reset(wait.Jitter(time.Second, 0.25))
 			// Never send a bookmark event if we did not see an event here, this is fine
@@ -1391,14 +1391,14 @@ func (c *cacheWatcher) processInterval(ctx context.Context, cacheInterval *watch
 	}
 
 	objType := c.objectType.String()
-	if len(initEvents) > 0 {
-		// initCounter.WithLabelValues(objType).Add(float64(len(initEvents)))
-		// With some events already sent, update resourceVersion
-		// so that events that were buffered and not yet processed
-		// won't be delivered to this watcher second time causing
-		// going back in time.
-		resourceVersion = initEvents[len(initEvents)-1].ResourceVersion
-	}
+	// if len(initEvents) > 0 {
+	// initCounter.WithLabelValues(objType).Add(float64(len(initEvents)))
+	// With some events already sent, update resourceVersion
+	// so that events that were buffered and not yet processed
+	// won't be delivered to this watcher second time causing
+	// going back in time.
+	// resourceVersion = initEvents[len(initEvents)-1].ResourceVersion
+	// }
 	processingTime := time.Since(startTime)
 	if processingTime > initProcessThreshold {
 		klog.V(2).Infof("processing %d initEvents of %s (%s) took %v", initEventCount, objType, c.identifier, processingTime)

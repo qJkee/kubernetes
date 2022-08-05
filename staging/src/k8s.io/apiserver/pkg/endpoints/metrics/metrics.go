@@ -405,25 +405,25 @@ func RecordDroppedRequest(req *http.Request, requestInfo *request.RequestInfo, c
 	if requestInfo == nil {
 		requestInfo = &request.RequestInfo{Verb: req.Method, Path: req.URL.Path}
 	}
-	scope := CleanScope(requestInfo)
-	dryRun := cleanDryRun(req.URL)
+	// scope := CleanScope(requestInfo)
+	// dryRun := cleanDryRun(req.URL)
 
 	// We don't use verb from <requestInfo>, as this may be propagated from
 	// InstrumentRouteFunc which is registered in installer.go with predefined
 	// list of verbs (different than those translated to RequestInfo).
 	// However, we need to tweak it e.g. to differentiate GET from LIST.
-	reportedVerb := cleanVerb(CanonicalVerb(strings.ToUpper(req.Method), scope), getVerbIfWatch(req), req)
+	// reportedVerb := cleanVerb(CanonicalVerb(strings.ToUpper(req.Method), scope), getVerbIfWatch(req), req)
 
 	if requestInfo.IsResourceRequest {
-		requestCounter.WithContext(req.Context()).WithLabelValues(reportedVerb, dryRun, requestInfo.APIGroup, requestInfo.APIVersion, requestInfo.Resource, requestInfo.Subresource, scope, component, codeToString(http.StatusTooManyRequests)).Inc()
+		// requestCounter.WithContext(req.Context()).WithLabelValues(reportedVerb, dryRun, requestInfo.APIGroup, requestInfo.APIVersion, requestInfo.Resource, requestInfo.Subresource, scope, component, codeToString(http.StatusTooManyRequests)).Inc()
 	} else {
-		requestCounter.WithContext(req.Context()).WithLabelValues(reportedVerb, dryRun, "", "", "", requestInfo.Subresource, scope, component, codeToString(http.StatusTooManyRequests)).Inc()
+		// requestCounter.WithContext(req.Context()).WithLabelValues(reportedVerb, dryRun, "", "", "", requestInfo.Subresource, scope, component, codeToString(http.StatusTooManyRequests)).Inc()
 	}
 
 	if isMutatingRequest {
-		droppedRequests.WithContext(req.Context()).WithLabelValues(MutatingKind).Inc()
+		// droppedRequests.WithContext(req.Context()).WithLabelValues(MutatingKind).Inc()
 	} else {
-		droppedRequests.WithContext(req.Context()).WithLabelValues(ReadOnlyKind).Inc()
+		// droppedRequests.WithContext(req.Context()).WithLabelValues(ReadOnlyKind).Inc()
 	}
 }
 
