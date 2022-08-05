@@ -117,10 +117,10 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
-replace k8s.io/api => github.com/qjkee/kubernetes/staging/src/k8s.io/api v0.0.0-20220805155208-4fba62ea9506
+replace k8s.io/api => github.com/qjkee/kubernetes/staging/src/k8s.io/api v0.0.0-20220805163859-f53665d6d49c
 
-replace k8s.io/apimachinery => github.com/qjkee/kubernetes/staging/src/k8s.io/apimachinery v0.0.0-20220805155208-4fba62ea9506
+replace k8s.io/apimachinery => github.com/qjkee/kubernetes/staging/src/k8s.io/apimachinery v0.0.0-20220805163859-f53665d6d49c
 
-replace k8s.io/client-go => github.com/qjkee/kubernetes/staging/src/k8s.io/client-go v0.0.0-20220805155208-4fba62ea9506
+replace k8s.io/client-go => github.com/qjkee/kubernetes/staging/src/k8s.io/client-go v0.0.0-20220805163859-f53665d6d49c
 
-replace k8s.io/component-base => github.com/qjkee/kubernetes/staging/src/k8s.io/component-base v0.0.0-20220805155208-4fba62ea9506
+replace k8s.io/component-base => github.com/qjkee/kubernetes/staging/src/k8s.io/component-base v0.0.0-20220805163859-f53665d6d49c
